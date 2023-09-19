@@ -1,4 +1,4 @@
-export default{
+export default {
     userComplete: {
         name: 'Fábio',
         email: 'fabio@kenzie.com.br',
