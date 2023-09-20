@@ -9,4 +9,4 @@ export default {
     },
 
     invalidSignature: sign({admin: true}, 'invalid_signature'), jwtMalformed: '12345',
-}
+};
