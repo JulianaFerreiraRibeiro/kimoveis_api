@@ -9,7 +9,7 @@
       "exactOptionalPropertyTypes": true,
       "skipLibCheck": true
     },
-    "include": ["src"],
+    "include": ["src", "data-source.ts"],
     "exclude": ["node_modules"]
   }
   
