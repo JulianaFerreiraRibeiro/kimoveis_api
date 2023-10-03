@@ -14,3 +14,8 @@ export const updateUserController = (req: Request, res: Response): Response => {
 
     return res.status(200).json()
 }
+
+export const deleteUserController = (req: Request, res: Response): Response => {
+
+    return res.status(204).json()
+}
