@@ -1,6 +1,7 @@
 import { Router } from "express";
+import { createRealEstateController, readRealEstateController } from "../controllers/realEstates.controller";
 
 export const RealEstatesRouter = Router()
 
-RealEstatesRouter.post("/")
-RealEstatesRouter.get("/")
+RealEstatesRouter.post("/", createRealEstateController)
+RealEstatesRouter.get("/", readRealEstateController)
