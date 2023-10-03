@@ -9,3 +9,8 @@ export const readUserController = (req: Request, res: Response): Response => {
 
     return res.status(200).json()
 }
+
+export const updateUserController = (req: Request, res: Response): Response => {
+
+    return res.status(200).json()
+}
