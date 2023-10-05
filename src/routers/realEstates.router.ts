@@ -3,8 +3,9 @@ import { createRealEstateController, readRealEstateController } from "../control
 import handleToken from "../middlewares/verifyToken/handleToken.middleware";
 import handleBody from './../middlewares/verifyBody/handleBody.middleware';
 import { realEstatesCreateSchema } from "../schemas/realEstates.schema";
+import handlePermission from "../middlewares/verifyPermission/hanlePermission.middleware";
 
 export const RealEstatesRouter = Router()
 
-RealEstatesRouter.post("/", handleToken, handleBody(realEstatesCreateSchema),createRealEstateController)
+RealEstatesRouter.post("/", handleToken, handlePermission, handleBody(realEstatesCreateSchema),createRealEstateController)
 RealEstatesRouter.get("/", readRealEstateController)

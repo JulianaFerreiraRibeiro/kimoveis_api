@@ -3,13 +3,14 @@ import { createUserController, deleteUserController, readUserController, updateU
 import handleToken from "../middlewares/verifyToken/handleToken.middleware";
 import handleBody from "../middlewares/verifyBody/handleBody.middleware";
 import { usersCreateSchema, usersUpdateSchema } from "../schemas/users.schema";
+import handlePermission from "../middlewares/verifyPermission/hanlePermission.middleware";
 
 export const UsersRouter = Router()
 
 UsersRouter.post("/", handleBody(usersCreateSchema), createUserController)
-UsersRouter.get("/", handleToken, readUserController)
+UsersRouter.get("/", handleToken, handlePermission, readUserController)
 UsersRouter.patch("/:userId", handleBody(usersUpdateSchema), handleToken, updateUserController)
-UsersRouter.delete("/:userId", handleToken, deleteUserController)
+UsersRouter.delete("/:userId", handleToken, handlePermission, deleteUserController)
 
 
 
