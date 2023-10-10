@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import AppError from "../../../error";
 
-const handlePermission = (req: Request, res: Response, next: NextFunction) => {
+const handlePermission = (req: Request, res: Response, next: NextFunction): void => {
 
     const {sub, admin} = res.locals.decoded
     
