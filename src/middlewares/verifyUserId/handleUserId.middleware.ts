@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import AppError from "../../../error";
 
-const handleUserId = (req: Request, res: Response, next: NextFunction) => {
+const handleUserId = (req: Request, res: Response, next: NextFunction): void => {
 
     const {admin, sub} = res.locals.decoded
     
