@@ -31,3 +31,10 @@ export const updateUserService = async (id: number, user: User): Promise<UpdateU
     const validatedUser: ReturnUser = usersReturnSchema.parse(updatedUser)
     return validatedUser 
 }
+
+export const deleteUserService = async (id: number) => {
+    
+    const foundUser: User | null = await usersRepository.findOneBy({id: id})
+
+    await usersRepository.softRemove(foundUser!)
+}
