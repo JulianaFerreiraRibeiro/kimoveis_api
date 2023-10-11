@@ -1,6 +1,6 @@
-import { CreateUser, ReturnUser } from "../interfaces/users.interface";
+import { CreateUser, ReadUser, ReturnUser } from "../interfaces/users.interface";
 import { usersRepository } from "../repositories";
-import { usersReturnSchema } from "../schemas/users.schema";
+import { usersReadSchema, usersReturnSchema } from "../schemas/users.schema";
 
 export const createUserService = async (payload: CreateUser): Promise<ReturnUser> => {
 
@@ -11,4 +11,11 @@ export const createUserService = async (payload: CreateUser): Promise<ReturnUser
     const validatedUser: ReturnUser = usersReturnSchema.parse(newUser)
 
     return validatedUser
+}
+
+export const readUsersService = async (): Promise<ReadUser> => {
+
+    const foundUsers: ReadUser = await usersRepository.find()
+
+    return usersReadSchema.parse(foundUsers)
 }
