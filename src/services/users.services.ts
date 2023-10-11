@@ -1,4 +1,5 @@
-import { CreateUser, ReadUser, ReturnUser } from "../interfaces/users.interface";
+import { User } from "../entities";
+import { CreateUser, ReadUser, ReturnUser, UpdateUser } from "../interfaces/users.interface";
 import { usersRepository } from "../repositories";
 import { usersReadSchema, usersReturnSchema } from "../schemas/users.schema";
 
@@ -18,4 +19,15 @@ export const readUsersService = async (): Promise<ReadUser> => {
     const foundUsers: ReadUser = await usersRepository.find()
 
     return usersReadSchema.parse(foundUsers)
+}
+
+export const updateUserService = async (id: number, user: User): Promise<UpdateUser> => {
+
+    const foundUser: User | null = await usersRepository.findOneBy({id: id})
+    const updatedUser = usersRepository.create({...foundUser, ...user})
+
+    await usersRepository.save(updatedUser)
+
+    const validatedUser: ReturnUser = usersReturnSchema.parse(updatedUser)
+    return validatedUser 
 }
