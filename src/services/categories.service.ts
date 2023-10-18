@@ -5,3 +5,8 @@ export const createCategoryService = async (payload: CreateCategory) => {
 
     return await categoriesRepository.save(payload)
 }
+
+export const readCategoriesService = async () => {
+
+    return await categoriesRepository.find()
+}
