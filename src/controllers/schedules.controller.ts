@@ -1,8 +1,11 @@
 import { Request, Response } from "express";
 
-export const createScheduleController = (req: Request, res: Response): Response => {
+export const createScheduleController = async (req: Request, res: Response): Promise<Response> => {
 
-    return res.status(201).json()
+    const {id} = res.locals.decoded
+
+    await createScheduleController(req.body, id)
+    return res.status(201).json({message: 'Schedule created'})
 }
 
 export const readScheduleRealEstateController = (req: Request, res: Response): Response => {
