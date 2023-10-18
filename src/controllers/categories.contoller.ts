@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createCategoryService, readCategoriesService } from "../services/categories.service";
+import { createCategoryService, readCategoriesRealEstateService, readCategoriesService } from "../services/categories.service";
 
 export const createCategoryController = async (req: Request, res: Response): Promise<Response> => {
     
@@ -15,7 +15,9 @@ export const readCategoriesController = async (req: Request, res: Response): Pro
     return res.status(200).json(categories)
 }
 
-export const readCategoriesRealEstatesController = (req: Request, res: Response) => {
+export const readCategoriesRealEstateController = async (req: Request, res: Response): Promise<Response> => {
 
-    return res.status(200).json()
+    const categoriesRealEstate = await readCategoriesRealEstateService(Number(req.params.id))
+
+    return res.status(200).json(categoriesRealEstate)
 }
