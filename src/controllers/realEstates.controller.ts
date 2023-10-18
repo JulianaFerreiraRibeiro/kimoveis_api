@@ -8,7 +8,7 @@ export const createRealEstateController = async (req: Request, res: Response): P
     return res.status(201).json(newRealEstate)
 }
 
-export const readRealEstateController = async (req: Request, res: Response): Response => {
+export const readRealEstateController = async (req: Request, res: Response): Promise<Response> => {
 
     const realEstates = await readRealEstateService()
     
