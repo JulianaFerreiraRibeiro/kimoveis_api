@@ -1,3 +1,4 @@
+import { Request, Response } from "express";
 import AppError from "../../error";
 import { CreateSchedule } from "../interfaces/schedules.interface";
 import { realEstatesRepository, schedulesRepository, usersRepository } from "../repositories";
@@ -20,11 +21,8 @@ export const createScheduleService = async (payload: CreateSchedule, id: number)
     }
 
 
-
-    const user = await usersRepository.findOneBy({id: id})
     const foundRealEstate = await realEstatesRepository.findOneBy({id: realEstateId})
     if(!foundRealEstate) throw new AppError("RealEstate not found", 404)
-
 
 
     const existsRealEstateSchedule = await schedulesRepository.findOne({ 
@@ -60,4 +58,21 @@ export const createScheduleService = async (payload: CreateSchedule, id: number)
     })
 
     return await schedulesRepository.save(newSchedule)
+}
+
+export const readSchedulesRealEstateService = async (id: number) => {
+
+    const foundRealEstate = await realEstatesRepository.findOne({where: {
+        id: id
+    }, 
+    relations:{
+        address: true,
+        schedules: {user: true},
+        category: true
+    }
+})
+
+    if(!foundRealEstate) throw new AppError("RealEstate not found", 404)
+
+    return foundRealEstate
 }
