@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { createRealEstateService } from "../services/realEstates.service";
+import { createRealEstateService, readRealEstateService } from "../services/realEstates.service";
 
 export const createRealEstateController = async (req: Request, res: Response): Promise<Response> => {
 
@@ -8,7 +8,9 @@ export const createRealEstateController = async (req: Request, res: Response): P
     return res.status(201).json(newRealEstate)
 }
 
-export const readRealEstateController = (req: Request, res: Response): Response => {
+export const readRealEstateController = async (req: Request, res: Response): Response => {
+
+    const realEstates = await readRealEstateService()
     
-    return res.status(200).json()
+    return res.status(200).json(realEstates)
 }

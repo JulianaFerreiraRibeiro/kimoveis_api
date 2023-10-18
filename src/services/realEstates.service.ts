@@ -24,3 +24,13 @@ export const createRealEstateService = async (payload: CreateRealEstate) => {
 
     return newRealEstate
 }
+
+
+export const readRealEstateService = async () => {
+
+    return await realEstatesRepository.find({
+        relations: {
+            address: true
+        }
+    })
+}
